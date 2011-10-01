@@ -1,0 +1,895 @@
+Almacenes:
+  connection: doctrine
+  tableName: almacenes
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: almacenes_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cantidad:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
+Ambitos:
+  connection: doctrine
+  tableName: ambitos
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: ambitos_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    coordenada_longitud:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    coordenada_latitud:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tipo_de_ambito_industrial:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    vias_de_acceso_a_la_fabrica_en_buen_estado:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: id
+      foreign: ambitos_id
+      type: many
+Categorias:
+  connection: doctrine
+  tableName: categorias
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: categorias_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+Clientes:
+  connection: doctrine
+  tableName: clientes
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: clientes_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tipo_clientes_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cliente_rif:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    TipoClientes:
+      local: tipo_clientes_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    VentasMaestro:
+      local: id
+      foreign: clientes_id
+      type: many
+Devoluciones:
+  connection: doctrine
+  tableName: devoluciones
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: devoluciones_id
+    ventas_maestro_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cant_devuelta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    VentasMaestro:
+      local: ventas_maestro_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+Ejes:
+  connection: doctrine
+  tableName: ejes
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: ejes_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: id
+      foreign: ejes_id
+      type: many
+Empresas:
+  connection: doctrine
+  tableName: empresas
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: empresas_id
+    nombre_empresa:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    actividad_economica:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    rif:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    direccion:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    localidad:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    coordenada_x:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    coordenada_y:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    ejes_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    ambitos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    parroquias_id:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tipo_empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    status_empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    bicentenario:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: true
+      default: 'false'
+      primary: false
+  relations:
+    TipoEmpresas:
+      local: tipo_empresas_id
+      foreign: id
+      type: one
+    StatusEmpresas:
+      local: status_empresas_id
+      foreign: id
+      type: one
+    Parroquias:
+      local: parroquias_id
+      foreign: id
+      type: one
+    Ejes:
+      local: ejes_id
+      foreign: id
+      type: one
+    Ambitos:
+      local: ambitos_id
+      foreign: id
+      type: one
+    Categorias:
+      local: id
+      foreign: empresas_id
+      type: many
+    Clientes:
+      local: id
+      foreign: empresas_id
+      type: many
+    Devoluciones:
+      local: id
+      foreign: empresas_id
+      type: many
+    PlanificacionMaestros:
+      local: id
+      foreign: empresas_id
+      type: many
+    Productos:
+      local: id
+      foreign: empresas_id
+      type: many
+    TiendaMaestroPedido:
+      local: id
+      foreign: empresas_id
+      type: many
+    VentasMaestro:
+      local: id
+      foreign: empresas_id
+      type: many
+Estados:
+  connection: doctrine
+  tableName: estados
+  columns:
+    id:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Municipios:
+      local: id
+      foreign: estados_id
+      type: many
+Municipios:
+  connection: doctrine
+  tableName: municipios
+  columns:
+    id:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    estados_id:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Estados:
+      local: estados_id
+      foreign: id
+      type: one
+    Parroquias:
+      local: id
+      foreign: municipios_id
+      type: many
+Parroquias:
+  connection: doctrine
+  tableName: parroquias
+  columns:
+    id:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    municipios_id:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Municipios:
+      local: municipios_id
+      foreign: id
+      type: one
+    Empresas:
+      local: id
+      foreign: parroquias_id
+      type: many
+PlanificacionDetalles:
+  connection: doctrine
+  tableName: planificacion_detalles
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: planificacion_detalles_id
+    planificacion_maestros_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cantidad:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cantidad_produccion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    dia:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
+    PlanificacionMaestros:
+      local: planificacion_maestros_id
+      foreign: id
+      type: one
+PlanificacionMaestros:
+  connection: doctrine
+  tableName: planificacion_maestros
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: planificacion_maestros_id
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    mes:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    PlanificacionDetalles:
+      local: id
+      foreign: planificacion_maestros_id
+      type: many
+Productos:
+  connection: doctrine
+  tableName: productos
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: productos_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    denominacion:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    especificaciones:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    presentacion:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    precio_real:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cantidad_inicial:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    categorias_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      default: '0'
+      primary: false
+  relations:
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    Almacenes:
+      local: id
+      foreign: productos_id
+      type: many
+    PlanificacionDetalles:
+      local: id
+      foreign: productos_id
+      type: many
+    PlanificacionMaestros:
+      local: id
+      foreign: productos_id
+      type: many
+    TiendaDetallePedido:
+      local: id
+      foreign: productos_id
+      type: many
+    VentasMaestro:
+      local: id
+      foreign: productos_id
+      type: many
+StatusEmpresas:
+  connection: doctrine
+  tableName: status_empresas
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: status_empresas_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: id
+      foreign: status_empresas_id
+      type: many
+TiendaDetallePedido:
+  connection: doctrine
+  tableName: tienda_detalle_pedido
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cantidad:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    fecha_entrega:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tienda_maestro_pedido_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
+    TiendaMaestroPedido:
+      local: tienda_maestro_pedido_id
+      foreign: id
+      type: one
+TiendaMaestroPedido:
+  connection: doctrine
+  tableName: tienda_maestro_pedido
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tienda_maestro_pedido_id
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    total_pedido:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    fecha_pedido:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      default: now()
+      primary: false
+  relations:
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    TiendaDetallePedido:
+      local: id
+      foreign: tienda_maestro_pedido_id
+      type: many
+TipoClientes:
+  connection: doctrine
+  tableName: tipo_clientes
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tipo_clientes_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Clientes:
+      local: id
+      foreign: tipo_clientes_id
+      type: many
+TipoEmpresas:
+  connection: doctrine
+  tableName: tipo_empresas
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tipo_empresas_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: id
+      foreign: tipo_empresas_id
+      type: many
+Usuario:
+  connection: doctrine
+  tableName: usuario
+  columns:
+    ci:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    apellido:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    ulogin:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    upassword:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    acceso:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    estatus:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    pass_exp:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    semilla:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: usuario_id
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    nombre_empresa:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    correo:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    telefono:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+VentasMaestro:
+  connection: doctrine
+  tableName: ventas_maestro
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: ventas_maestro_id
+    clientes_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    fecha_entrega:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    productos_cantidad:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    total_venta:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    Clientes:
+      local: clientes_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
+    Devoluciones:
+      local: id
+      foreign: ventas_maestro_id
+      type: many
