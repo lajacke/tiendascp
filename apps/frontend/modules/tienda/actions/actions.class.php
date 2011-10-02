@@ -30,5 +30,17 @@ class tiendaActions extends sfActions {
     public function executeShow(sfWebRequest $request){
         $this->producto=Doctrine_Core::getTable("Productos")->findBy("id", $request->getParameter("id"));
     }
+    public function executeComprar(sfWebRequest $request){
+        $compra=new TiendaCarrito();
+        $compra->setUsuarioId(1);
+        $compra->setProductoId($request->getParameter("id"));
+        $compra->setCantidad($request->getParameter("cantidad"));
+        $compra->setFecha("now()");
+        $compra->setActivo("true");
+        $compra->save();
+        Usuario::setSessionVars();
+        echo 'true';
+        die();
+    }
 
 }

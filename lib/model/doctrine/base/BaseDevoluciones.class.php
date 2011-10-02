@@ -11,21 +11,21 @@ Doctrine_Manager::getInstance()->bindComponent('Devoluciones', 'doctrine');
  * @property integer $ventas_maestro_id
  * @property integer $empresas_id
  * @property integer $cant_devuelta
- * @property VentasMaestro $VentasMaestro
  * @property Empresas $Empresas
+ * @property VentasMaestro $VentasMaestro
  * 
  * @method integer       getId()                Returns the current record's "id" value
  * @method integer       getVentasMaestroId()   Returns the current record's "ventas_maestro_id" value
  * @method integer       getEmpresasId()        Returns the current record's "empresas_id" value
  * @method integer       getCantDevuelta()      Returns the current record's "cant_devuelta" value
- * @method VentasMaestro getVentasMaestro()     Returns the current record's "VentasMaestro" value
  * @method Empresas      getEmpresas()          Returns the current record's "Empresas" value
+ * @method VentasMaestro getVentasMaestro()     Returns the current record's "VentasMaestro" value
  * @method Devoluciones  setId()                Sets the current record's "id" value
  * @method Devoluciones  setVentasMaestroId()   Sets the current record's "ventas_maestro_id" value
  * @method Devoluciones  setEmpresasId()        Sets the current record's "empresas_id" value
  * @method Devoluciones  setCantDevuelta()      Sets the current record's "cant_devuelta" value
- * @method Devoluciones  setVentasMaestro()     Sets the current record's "VentasMaestro" value
  * @method Devoluciones  setEmpresas()          Sets the current record's "Empresas" value
+ * @method Devoluciones  setVentasMaestro()     Sets the current record's "VentasMaestro" value
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -74,12 +74,12 @@ abstract class BaseDevoluciones extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('VentasMaestro', array(
-             'local' => 'ventas_maestro_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Empresas', array(
              'local' => 'empresas_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('VentasMaestro', array(
+             'local' => 'ventas_maestro_id',
              'foreign' => 'id'));
     }
 }

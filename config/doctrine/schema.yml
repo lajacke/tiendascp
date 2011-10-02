@@ -138,12 +138,12 @@ Clientes:
       notnull: true
       primary: false
   relations:
-    TipoClientes:
-      local: tipo_clientes_id
-      foreign: id
-      type: one
     Empresas:
       local: empresas_id
+      foreign: id
+      type: one
+    TipoClientes:
+      local: tipo_clientes_id
       foreign: id
       type: one
     VentasMaestro:
@@ -179,12 +179,12 @@ Devoluciones:
       notnull: true
       primary: false
   relations:
-    VentasMaestro:
-      local: ventas_maestro_id
-      foreign: id
-      type: one
     Empresas:
       local: empresas_id
+      foreign: id
+      type: one
+    VentasMaestro:
+      local: ventas_maestro_id
       foreign: id
       type: one
 Ejes:
@@ -298,24 +298,24 @@ Empresas:
       default: 'false'
       primary: false
   relations:
-    TipoEmpresas:
-      local: tipo_empresas_id
-      foreign: id
-      type: one
-    StatusEmpresas:
-      local: status_empresas_id
-      foreign: id
-      type: one
-    Parroquias:
-      local: parroquias_id
+    Ambitos:
+      local: ambitos_id
       foreign: id
       type: one
     Ejes:
       local: ejes_id
       foreign: id
       type: one
-    Ambitos:
-      local: ambitos_id
+    Parroquias:
+      local: parroquias_id
+      foreign: id
+      type: one
+    StatusEmpresas:
+      local: status_empresas_id
+      foreign: id
+      type: one
+    TipoEmpresas:
+      local: tipo_empresas_id
       foreign: id
       type: one
     Categorias:
@@ -467,12 +467,12 @@ PlanificacionDetalles:
       notnull: false
       primary: false
   relations:
-    Productos:
-      local: productos_id
-      foreign: id
-      type: one
     PlanificacionMaestros:
       local: planificacion_maestros_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
       foreign: id
       type: one
 PlanificacionMaestros:
@@ -504,12 +504,12 @@ PlanificacionMaestros:
       notnull: false
       primary: false
   relations:
-    Productos:
-      local: productos_id
-      foreign: id
-      type: one
     Empresas:
       local: empresas_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
       foreign: id
       type: one
     PlanificacionDetalles:
@@ -592,6 +592,10 @@ Productos:
       local: id
       foreign: productos_id
       type: many
+    TiendaCarrito:
+      local: id
+      foreign: producto_id
+      type: many
     TiendaDetallePedido:
       local: id
       foreign: productos_id
@@ -621,6 +625,55 @@ StatusEmpresas:
       local: id
       foreign: status_empresas_id
       type: many
+TiendaCarrito:
+  connection: doctrine
+  tableName: tienda_carrito
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tienda_carrito_id
+    usuario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    producto_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cantidad:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    fecha:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    activo:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Productos:
+      local: producto_id
+      foreign: id
+      type: one
+    Usuario:
+      local: usuario_id
+      foreign: id
+      type: one
 TiendaDetallePedido:
   connection: doctrine
   tableName: tienda_detalle_pedido
@@ -654,12 +707,12 @@ TiendaDetallePedido:
       notnull: true
       primary: false
   relations:
-    Productos:
-      local: productos_id
-      foreign: id
-      type: one
     TiendaMaestroPedido:
       local: tienda_maestro_pedido_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
       foreign: id
       type: one
 TiendaMaestroPedido:
@@ -830,6 +883,11 @@ Usuario:
       unsigned: false
       notnull: false
       primary: false
+  relations:
+    TiendaCarrito:
+      local: id
+      foreign: usuario_id
+      type: many
 VentasMaestro:
   connection: doctrine
   tableName: ventas_maestro
@@ -877,16 +935,16 @@ VentasMaestro:
       notnull: true
       primary: false
   relations:
-    Empresas:
-      local: empresas_id
+    Productos:
+      local: productos_id
       foreign: id
       type: one
     Clientes:
       local: clientes_id
       foreign: id
       type: one
-    Productos:
-      local: productos_id
+    Empresas:
+      local: empresas_id
       foreign: id
       type: one
     Devoluciones:

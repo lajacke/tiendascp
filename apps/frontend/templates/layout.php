@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <?php Usuario::setSessionVars(); ?>
   </head>
   <body>
       <div class="container">
@@ -18,7 +19,9 @@
               </form>
           </div>
           <div class="span-18" id="cuerpo"><?php echo $sf_content ?></div>
-          <div class="span-6 last" id="carrito">Carrito</div>
+          <div class="span-6 last" id="carrito">
+              <?php include_once('_menu_carrito.php') ?>
+          </div>
           <div class="span-24 last" id="pie">Pie</div>
       </div>  
   </body>

@@ -20,6 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @property Doctrine_Collection $Almacenes
  * @property Doctrine_Collection $PlanificacionDetalles
  * @property Doctrine_Collection $PlanificacionMaestros
+ * @property Doctrine_Collection $TiendaCarrito
  * @property Doctrine_Collection $TiendaDetallePedido
  * @property Doctrine_Collection $VentasMaestro
  * 
@@ -36,6 +37,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @method Doctrine_Collection getAlmacenes()             Returns the current record's "Almacenes" collection
  * @method Doctrine_Collection getPlanificacionDetalles() Returns the current record's "PlanificacionDetalles" collection
  * @method Doctrine_Collection getPlanificacionMaestros() Returns the current record's "PlanificacionMaestros" collection
+ * @method Doctrine_Collection getTiendaCarrito()         Returns the current record's "TiendaCarrito" collection
  * @method Doctrine_Collection getTiendaDetallePedido()   Returns the current record's "TiendaDetallePedido" collection
  * @method Doctrine_Collection getVentasMaestro()         Returns the current record's "VentasMaestro" collection
  * @method Productos           setId()                    Sets the current record's "id" value
@@ -51,6 +53,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @method Productos           setAlmacenes()             Sets the current record's "Almacenes" collection
  * @method Productos           setPlanificacionDetalles() Sets the current record's "PlanificacionDetalles" collection
  * @method Productos           setPlanificacionMaestros() Sets the current record's "PlanificacionMaestros" collection
+ * @method Productos           setTiendaCarrito()         Sets the current record's "TiendaCarrito" collection
  * @method Productos           setTiendaDetallePedido()   Sets the current record's "TiendaDetallePedido" collection
  * @method Productos           setVentasMaestro()         Sets the current record's "VentasMaestro" collection
  * 
@@ -157,6 +160,10 @@ abstract class BaseProductos extends sfDoctrineRecord
         $this->hasMany('PlanificacionMaestros', array(
              'local' => 'id',
              'foreign' => 'productos_id'));
+
+        $this->hasMany('TiendaCarrito', array(
+             'local' => 'id',
+             'foreign' => 'producto_id'));
 
         $this->hasMany('TiendaDetallePedido', array(
              'local' => 'id',

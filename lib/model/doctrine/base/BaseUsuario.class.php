@@ -21,35 +21,38 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property string $nombre_empresa
  * @property string $correo
  * @property string $telefono
+ * @property Doctrine_Collection $TiendaCarrito
  * 
- * @method decimal   getCi()             Returns the current record's "ci" value
- * @method string    getNombre()         Returns the current record's "nombre" value
- * @method string    getApellido()       Returns the current record's "apellido" value
- * @method string    getUlogin()         Returns the current record's "ulogin" value
- * @method string    getUpassword()      Returns the current record's "upassword" value
- * @method timestamp getAcceso()         Returns the current record's "acceso" value
- * @method decimal   getEstatus()        Returns the current record's "estatus" value
- * @method timestamp getPassExp()        Returns the current record's "pass_exp" value
- * @method string    getSemilla()        Returns the current record's "semilla" value
- * @method integer   getId()             Returns the current record's "id" value
- * @method integer   getEmpresasId()     Returns the current record's "empresas_id" value
- * @method string    getNombreEmpresa()  Returns the current record's "nombre_empresa" value
- * @method string    getCorreo()         Returns the current record's "correo" value
- * @method string    getTelefono()       Returns the current record's "telefono" value
- * @method Usuario   setCi()             Sets the current record's "ci" value
- * @method Usuario   setNombre()         Sets the current record's "nombre" value
- * @method Usuario   setApellido()       Sets the current record's "apellido" value
- * @method Usuario   setUlogin()         Sets the current record's "ulogin" value
- * @method Usuario   setUpassword()      Sets the current record's "upassword" value
- * @method Usuario   setAcceso()         Sets the current record's "acceso" value
- * @method Usuario   setEstatus()        Sets the current record's "estatus" value
- * @method Usuario   setPassExp()        Sets the current record's "pass_exp" value
- * @method Usuario   setSemilla()        Sets the current record's "semilla" value
- * @method Usuario   setId()             Sets the current record's "id" value
- * @method Usuario   setEmpresasId()     Sets the current record's "empresas_id" value
- * @method Usuario   setNombreEmpresa()  Sets the current record's "nombre_empresa" value
- * @method Usuario   setCorreo()         Sets the current record's "correo" value
- * @method Usuario   setTelefono()       Sets the current record's "telefono" value
+ * @method decimal             getCi()             Returns the current record's "ci" value
+ * @method string              getNombre()         Returns the current record's "nombre" value
+ * @method string              getApellido()       Returns the current record's "apellido" value
+ * @method string              getUlogin()         Returns the current record's "ulogin" value
+ * @method string              getUpassword()      Returns the current record's "upassword" value
+ * @method timestamp           getAcceso()         Returns the current record's "acceso" value
+ * @method decimal             getEstatus()        Returns the current record's "estatus" value
+ * @method timestamp           getPassExp()        Returns the current record's "pass_exp" value
+ * @method string              getSemilla()        Returns the current record's "semilla" value
+ * @method integer             getId()             Returns the current record's "id" value
+ * @method integer             getEmpresasId()     Returns the current record's "empresas_id" value
+ * @method string              getNombreEmpresa()  Returns the current record's "nombre_empresa" value
+ * @method string              getCorreo()         Returns the current record's "correo" value
+ * @method string              getTelefono()       Returns the current record's "telefono" value
+ * @method Doctrine_Collection getTiendaCarrito()  Returns the current record's "TiendaCarrito" collection
+ * @method Usuario             setCi()             Sets the current record's "ci" value
+ * @method Usuario             setNombre()         Sets the current record's "nombre" value
+ * @method Usuario             setApellido()       Sets the current record's "apellido" value
+ * @method Usuario             setUlogin()         Sets the current record's "ulogin" value
+ * @method Usuario             setUpassword()      Sets the current record's "upassword" value
+ * @method Usuario             setAcceso()         Sets the current record's "acceso" value
+ * @method Usuario             setEstatus()        Sets the current record's "estatus" value
+ * @method Usuario             setPassExp()        Sets the current record's "pass_exp" value
+ * @method Usuario             setSemilla()        Sets the current record's "semilla" value
+ * @method Usuario             setId()             Sets the current record's "id" value
+ * @method Usuario             setEmpresasId()     Sets the current record's "empresas_id" value
+ * @method Usuario             setNombreEmpresa()  Sets the current record's "nombre_empresa" value
+ * @method Usuario             setCorreo()         Sets the current record's "correo" value
+ * @method Usuario             setTelefono()       Sets the current record's "telefono" value
+ * @method Usuario             setTiendaCarrito()  Sets the current record's "TiendaCarrito" collection
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -178,6 +181,8 @@ abstract class BaseUsuario extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('TiendaCarrito', array(
+             'local' => 'id',
+             'foreign' => 'usuario_id'));
     }
 }

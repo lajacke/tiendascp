@@ -1,0 +1,4 @@
+.precio{font-size: 14px;color: #990000;font-weight: 600;}
+#carrito{text-align: center}
+#comprar,#comprado{width: 120px; height: 35px; cursor: pointer}
+#buscador{text-align: right}

@@ -10,6 +10,14 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Usuario extends BaseUsuario
-{
+class Usuario extends BaseUsuario {
+    public static function setSessionVars(){
+        $compras=array();
+        $comprasActivas=Doctrine_Core::getTable("TiendaCarrito")->getComprasUsuario(1);
+        for($i=0;$i<count($comprasActivas);$i++){
+            $compras[$i]=$comprasActivas[$i]["producto_id"];
+        }
+        sfContext::getInstance()->getUser()->setAttribute("compras",$compras);
+        return true;
+    }
 }
