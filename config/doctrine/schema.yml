@@ -594,7 +594,7 @@ Productos:
       type: many
     TiendaCarrito:
       local: id
-      foreign: producto_id
+      foreign: productos_id
       type: many
     TiendaDetallePedido:
       local: id
@@ -641,12 +641,6 @@ TiendaCarrito:
       unsigned: false
       notnull: false
       primary: false
-    producto_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
     cantidad:
       type: integer(4)
       fixed: false
@@ -665,13 +659,19 @@ TiendaCarrito:
       unsigned: false
       notnull: false
       primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
   relations:
-    Productos:
-      local: producto_id
-      foreign: id
-      type: one
     Usuario:
       local: usuario_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
       foreign: id
       type: one
 TiendaDetallePedido:
@@ -679,9 +679,12 @@ TiendaDetallePedido:
   tableName: tienda_detalle_pedido
   columns:
     id:
-      type: integer(8)
-      autoincrement: true
-      primary: true
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+      sequence: tienda_detalle_pedido_id
     productos_id:
       type: integer(4)
       fixed: false

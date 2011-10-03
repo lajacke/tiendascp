@@ -40,11 +40,14 @@ abstract class BaseTiendaDetallePedido extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('tienda_detalle_pedido');
-        $this->hasColumn('id', 'integer', 8, array(
+        $this->hasColumn('id', 'integer', 4, array(
              'type' => 'integer',
-             'autoincrement' => true,
-             'primary' => true,
-             'length' => 8,
+             'fixed' => 0,
+             'unsigned' => false,
+             'notnull' => true,
+             'primary' => false,
+             'sequence' => 'tienda_detalle_pedido_id',
+             'length' => 4,
              ));
         $this->hasColumn('productos_id', 'integer', 4, array(
              'type' => 'integer',

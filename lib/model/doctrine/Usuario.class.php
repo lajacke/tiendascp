@@ -15,7 +15,7 @@ class Usuario extends BaseUsuario {
         $compras=array();
         $comprasActivas=Doctrine_Core::getTable("TiendaCarrito")->getComprasUsuario(1);
         for($i=0;$i<count($comprasActivas);$i++){
-            $compras[$i]=$comprasActivas[$i]["producto_id"];
+            $compras[$i]=$comprasActivas[$i]["productos_id"];
         }
         sfContext::getInstance()->getUser()->setAttribute("compras",$compras);
         return true;

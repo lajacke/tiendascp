@@ -163,7 +163,7 @@ abstract class BaseProductos extends sfDoctrineRecord
 
         $this->hasMany('TiendaCarrito', array(
              'local' => 'id',
-             'foreign' => 'producto_id'));
+             'foreign' => 'productos_id'));
 
         $this->hasMany('TiendaDetallePedido', array(
              'local' => 'id',

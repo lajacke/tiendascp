@@ -20,7 +20,7 @@
                         cantArticulos++;
                         $("#cant_articulos").html(cantArticulos);
                         $("#comprar").remove();
-                        $("#btn_comprar").html('<?php echo image_tag("comprado.jpg",array("id"=>"comprado")) ?><br/>');
+                        $("#btn_comprar").html('<?php echo image_tag("comprado.jpg", array("id" => "comprado")) ?><br/>');
                     }
                 }
             });

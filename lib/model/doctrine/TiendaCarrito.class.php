@@ -10,6 +10,29 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class TiendaCarrito extends BaseTiendaCarrito
-{
+class TiendaCarrito extends BaseTiendaCarrito {
+
+    public static function borrarCompra($producto) {
+        $query = Doctrine_Query::create()
+                        ->update("TiendaCarrito")
+                        ->set("activo", "false")
+                        ->where("productos_id=?", $producto)
+                        ->andWhere("activo=?", "true")
+                        ->execute();
+        return $query;
+    }
+
+    public static function unsetCarrito($datosProductos, $usuario) {
+        for ($i = 0; $i < count($datosProductos); $i++) {
+            $query = Doctrine_Query::create()
+                            ->update("TiendaCarrito")
+                            ->set("activo", "false")
+                            ->where("usuario_id=?", $usuario)
+                            ->andWhere("productos_id=?", $datosProductos[$i]["id"])
+                            ->execute();
+        }
+        sfContext::getInstance()->getUser()->getAttributeHolder()->remove("compras");
+        return $query;
+    }
+
 }

@@ -13,4 +13,7 @@
     Usted tiene<label id="cant_articulos"><?php echo count(sfContext::getInstance()->getUser()->getAttribute("compras")) ?></label>Articulos en el carrito<br />
     <a href="<?php echo url_for("tienda/carrito") ?>">Ver carrito de compras</a>
 </div>
-<?php endif; ?>
+<?php else: ?>
+    Usted tiene<label id="cant_articulos"><?php echo count(sfContext::getInstance()->getUser()->getAttribute("compras")) ?></label>Articulos en el carrito<br />
+    <a href="<?php echo url_for("tienda/carrito") ?>">Ver carrito de compras</a>
+<?php endif;?>
