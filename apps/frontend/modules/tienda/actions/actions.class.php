@@ -127,6 +127,7 @@ class tiendaActions extends sfActions {
                 $detallePlanificacion->save();
             }
         }
+        TiendaCarrito::unsetCarrito($datosProductos, 1);
         $this->redirect("tienda/index");
     }
 

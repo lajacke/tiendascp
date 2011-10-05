@@ -1,5 +1,6 @@
 <script>
 var reg=0;
+var val="";
 </script>
 <select id="ano<?php echo $col ?>">
     <option value="">Seleccione</option>

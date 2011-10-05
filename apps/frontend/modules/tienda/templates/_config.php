@@ -44,13 +44,20 @@
         if(ano!=""){
             if(mes!=""){
                 if(cant!=""){
-                    $("#error"+col).text("");
-                    fila="<tr id='fila"+registro+"'><td>"+ano+"</td><td>"+getNombreMes(mes)+"</td><td>"+cant+"</td><td><img src='../../../../images/borrar.png' onclick='borrar("+registro+")' alt='borrar' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][ano]' value='"+ano+"' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][mes]' value='"+mes+"' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][cant]' value='"+cant+"' /></td></tr>"
-                    $("#tbl_planificacion"+col).append(fila);
-                    $("#ano"+col).val("");
-                    $("#mes"+col).val("");
-                    $("#prod_cantidad"+col).val("");
-                    reg++;                    
+                    var verificaVal= verificaValidacion(producto,ano,mes,val);
+                    if(verificaVal==true){
+                        val=val+producto+"-"+ano+"-"+mes+",";
+                        $("#error"+col).text("");
+                        fila="<tr id='fila"+registro+"'><td>"+ano+"</td><td>"+getNombreMes(mes)+"</td><td>"+cant+"</td><td><img src='../../../../images/borrar.png' onclick='borrar("+registro+")' alt='borrar' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][ano]' value='"+ano+"' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][mes]' value='"+mes+"' /><input type='hidden' name='planificacion["+producto+"]["+registro+"][cant]' value='"+cant+"' /></td></tr>"
+                        $("#tbl_planificacion"+col).append(fila);
+                        $("#ano"+col).val("");
+                        $("#mes"+col).val("");
+                        $("#prod_cantidad"+col).val("");
+                        reg++;
+                    }else{
+                        $("#error"+col).text("Este mes ya fue planificado para este producto");
+                        return false
+                    }                    
                 }else{
                     $("#error"+col).text("Debe especificar una cantidad");
                     return false;
@@ -73,6 +80,17 @@
         }else{
             return false;
         }
+    }
+    
+    function verificaValidacion(producto,ano,mes,val){
+        var validacion =val.split(",")
+        var cadenaValidacion=producto+"-"+ano+"-"+mes;
+        for (var i = 0; i < validacion.length; i++){
+            if(validacion[i]==cadenaValidacion){
+                return false;
+            }
+        }
+        return true;
     }
     
     function getNombreMes(idMes){
