@@ -19,7 +19,7 @@ class TiendaMaestroPedido extends BaseTiendaMaestroPedido {
         }
         return $total;
     }
-    public function guardaMaestro($datosProductos,$total){
+    public function guardaMaestro($total){
         $this->setEmpresasId(5);
         $this->setTotalPedido($total);
         $this->setFechaPedido("now()");

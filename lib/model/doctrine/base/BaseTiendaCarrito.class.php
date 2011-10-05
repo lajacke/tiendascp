@@ -13,8 +13,8 @@ Doctrine_Manager::getInstance()->bindComponent('TiendaCarrito', 'doctrine');
  * @property timestamp $fecha
  * @property boolean $activo
  * @property integer $productos_id
- * @property Usuario $Usuario
  * @property Productos $Productos
+ * @property Usuario $Usuario
  * 
  * @method integer       getId()           Returns the current record's "id" value
  * @method integer       getUsuarioId()    Returns the current record's "usuario_id" value
@@ -22,16 +22,16 @@ Doctrine_Manager::getInstance()->bindComponent('TiendaCarrito', 'doctrine');
  * @method timestamp     getFecha()        Returns the current record's "fecha" value
  * @method boolean       getActivo()       Returns the current record's "activo" value
  * @method integer       getProductosId()  Returns the current record's "productos_id" value
- * @method Usuario       getUsuario()      Returns the current record's "Usuario" value
  * @method Productos     getProductos()    Returns the current record's "Productos" value
+ * @method Usuario       getUsuario()      Returns the current record's "Usuario" value
  * @method TiendaCarrito setId()           Sets the current record's "id" value
  * @method TiendaCarrito setUsuarioId()    Sets the current record's "usuario_id" value
  * @method TiendaCarrito setCantidad()     Sets the current record's "cantidad" value
  * @method TiendaCarrito setFecha()        Sets the current record's "fecha" value
  * @method TiendaCarrito setActivo()       Sets the current record's "activo" value
  * @method TiendaCarrito setProductosId()  Sets the current record's "productos_id" value
- * @method TiendaCarrito setUsuario()      Sets the current record's "Usuario" value
  * @method TiendaCarrito setProductos()    Sets the current record's "Productos" value
+ * @method TiendaCarrito setUsuario()      Sets the current record's "Usuario" value
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -96,12 +96,12 @@ abstract class BaseTiendaCarrito extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Usuario', array(
-             'local' => 'usuario_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Productos', array(
              'local' => 'productos_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Usuario', array(
+             'local' => 'usuario_id',
              'foreign' => 'id'));
     }
 }

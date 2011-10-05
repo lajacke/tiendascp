@@ -48,6 +48,7 @@ class tiendaActions extends sfActions {
     public function executeCarrito(sfWebRequest $request) {
         $compras = sfContext::getInstance()->getUser()->getAttribute("compras");
         $this->productos = $compras;
+        $request->getParameter("acc") != "comprar" && $request->getParameter("acc") != "planificar" ? $this->redirect("tienda/index") : "";
     }
 
     public function executeBorrarcompra(sfWebRequest $request) {
@@ -70,11 +71,11 @@ class tiendaActions extends sfActions {
             $datosProductos[$i] = $producto;
         }
 
-        $total = TiendaMaestroPedido::getTotal($datosProductos,$dataForm["cantidad"]);
+        $total = TiendaMaestroPedido::getTotal($datosProductos, $dataForm["cantidad"]);
 
-        $maestroTienda = new TiendaMaestroPedido();
-        $maestroTienda->guardaMaestro($datosProductos, $total);
-        $idMaestro = $maestroTienda->getId();
+        $maestroPedido = new TiendaMaestroPedido();
+        $maestroPedido->guardaMaestro($total);
+        $idMaestro = $maestroPedido->getId();
 
         for ($i = 0; $i < count($datosProductos); $i++) {
             $detallePedido = new TiendaDetallePedido();
@@ -85,24 +86,63 @@ class tiendaActions extends sfActions {
             $detallePedido->save();
         }
 
-        TiendaCarrito::unsetCarrito($datosProductos,1);
-        /*AQUI VA LA PARTE DE LOS CORREOS*/
+        TiendaCarrito::unsetCarrito($datosProductos, 1);
+        /* AQUI VA LA PARTE DE LOS CORREOS */
+        $this->redirect("tienda/index");
+    }
+
+    public function executeGenerarPlanificacion(sfWebRequest $request) {
+        $cantidades = array();
+        $i = 0;
+        foreach ($request["planificacion"] as $producto => $valProducto) {
+            $arrProductos[$i] = $producto;
+            $i++;
+        }
+        $i = 0;
+        foreach ($arrProductos as $producto) {
+            $datosProductos[$i] = Doctrine_Core::getTable("Productos")->findOneBy("id", $producto);
+            $i++;
+        }
+        $i = 0;
+        foreach ($request["planificacion"] as $producto => $valProducto) {
+            foreach ($valProducto as $cantRegistro => $valCantRegistro) {
+                @$cantidades[$i]+=$cantidades[$i] + $valCantRegistro["cant"];
+            }
+            $i++;
+        }
+        $total = TiendaMaestroPedido::getTotal($datosProductos, $cantidades);
+
+        $maestroPlanificacion = new TiendaMaestroPlanificacion();
+        $maestroPlanificacion->guardaMaestro($total);
+        $idMaestro = $maestroPlanificacion->getId();
+
+        foreach ($request["planificacion"] as $producto => $valProducto) {
+            foreach ($valProducto as $cantRegistro => $valCantRegistro) {
+                $detallePlanificacion = new TiendaDetallePlanificacion();
+                $detallePlanificacion->setProductosId($producto);
+                $detallePlanificacion->setCantidad($valCantRegistro["cant"]);
+                $detallePlanificacion->setMes($valCantRegistro["mes"]);
+                $detallePlanificacion->setAno($valCantRegistro["ano"]);
+                $detallePlanificacion->setTiendaMaestroPlanificacionId($idMaestro);
+                $detallePlanificacion->save();
+            }
+        }
         $this->redirect("tienda/index");
     }
 
     private function getDataForm(sfWebRequest $request) {
         $cantidades = $request["cantidad"];
-        $fechas=$request["fecha_entrega"];
-        $i=0;
-        foreach($cantidades as $cantidad=>$valor){
-            $datosForm["cantidad"][$i]=$valor;
+        $fechas = $request["fecha_entrega"];
+        $i = 0;
+        foreach ($cantidades as $cantidad => $valor) {
+            $datosForm["cantidad"][$i] = $valor;
             $i++;
         }
-        $i=0;
-        foreach($fechas as $fecha=>$valor){
-            $fecha=explode("/",$valor);
-            $fecha=$fecha[2]."-".$fecha[1]."-".$fecha[0];
-            $datosForm["fecha"][$i]=$fecha;
+        $i = 0;
+        foreach ($fechas as $fecha => $valor) {
+            $fecha = explode("/", $valor);
+            $fecha = $fecha[2] . "-" . $fecha[1] . "-" . $fecha[0];
+            $datosForm["fecha"][$i] = $fecha;
             $i++;
         }
         return $datosForm;

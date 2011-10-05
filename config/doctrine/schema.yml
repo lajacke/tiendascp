@@ -342,6 +342,10 @@ Empresas:
       local: id
       foreign: empresas_id
       type: many
+    TiendaMaestroPlanificacion:
+      local: id
+      foreign: empresas_id
+      type: many
     VentasMaestro:
       local: id
       foreign: empresas_id
@@ -600,6 +604,10 @@ Productos:
       local: id
       foreign: productos_id
       type: many
+    TiendaDetallePlanificacion:
+      local: id
+      foreign: productos_id
+      type: many
     VentasMaestro:
       local: id
       foreign: productos_id
@@ -666,12 +674,12 @@ TiendaCarrito:
       notnull: false
       primary: false
   relations:
-    Usuario:
-      local: usuario_id
-      foreign: id
-      type: one
     Productos:
       local: productos_id
+      foreign: id
+      type: one
+    Usuario:
+      local: usuario_id
       foreign: id
       type: one
 TiendaDetallePedido:
@@ -718,6 +726,55 @@ TiendaDetallePedido:
       local: productos_id
       foreign: id
       type: one
+TiendaDetallePlanificacion:
+  connection: doctrine
+  tableName: tienda_detalle_planificacion
+  columns:
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    cantidad:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tienda_maestro_planificacion_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tienda_detalle_planificacion_id
+    mes:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    ano:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    TiendaMaestroPlanificacion:
+      local: tienda_maestro_planificacion_id
+      foreign: id
+      type: one
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
 TiendaMaestroPedido:
   connection: doctrine
   tableName: tienda_maestro_pedido
@@ -755,6 +812,44 @@ TiendaMaestroPedido:
     TiendaDetallePedido:
       local: id
       foreign: tienda_maestro_pedido_id
+      type: many
+TiendaMaestroPlanificacion:
+  connection: doctrine
+  tableName: tienda_maestro_planificacion
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tienda_maestro_planificacion_id
+    empresas_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    total_planificacion:
+      type: float()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    fecha_planificacion:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      default: now()
+      primary: false
+  relations:
+    Empresas:
+      local: empresas_id
+      foreign: id
+      type: one
+    TiendaDetallePlanificacion:
+      local: id
+      foreign: tienda_maestro_planificacion_id
       type: many
 TipoClientes:
   connection: doctrine
