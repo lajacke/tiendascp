@@ -138,12 +138,12 @@ Clientes:
       notnull: true
       primary: false
   relations:
-    Empresas:
-      local: empresas_id
-      foreign: id
-      type: one
     TipoClientes:
       local: tipo_clientes_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
       foreign: id
       type: one
     VentasMaestro:
@@ -179,12 +179,12 @@ Devoluciones:
       notnull: true
       primary: false
   relations:
-    Empresas:
-      local: empresas_id
-      foreign: id
-      type: one
     VentasMaestro:
       local: ventas_maestro_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
       foreign: id
       type: one
 Ejes:
@@ -298,24 +298,24 @@ Empresas:
       default: 'false'
       primary: false
   relations:
-    Ambitos:
-      local: ambitos_id
-      foreign: id
-      type: one
-    Ejes:
-      local: ejes_id
-      foreign: id
-      type: one
-    Parroquias:
-      local: parroquias_id
+    TipoEmpresas:
+      local: tipo_empresas_id
       foreign: id
       type: one
     StatusEmpresas:
       local: status_empresas_id
       foreign: id
       type: one
-    TipoEmpresas:
-      local: tipo_empresas_id
+    Parroquias:
+      local: parroquias_id
+      foreign: id
+      type: one
+    Ejes:
+      local: ejes_id
+      foreign: id
+      type: one
+    Ambitos:
+      local: ambitos_id
       foreign: id
       type: one
     Categorias:
@@ -366,6 +366,33 @@ Estados:
       local: id
       foreign: estados_id
       type: many
+Foto:
+  connection: doctrine
+  tableName: foto
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: foto_id
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    productos_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Productos:
+      local: productos_id
+      foreign: id
+      type: one
 Municipios:
   connection: doctrine
   tableName: municipios
@@ -467,12 +494,12 @@ PlanificacionDetalles:
       notnull: false
       primary: false
   relations:
-    PlanificacionMaestros:
-      local: planificacion_maestros_id
-      foreign: id
-      type: one
     Productos:
       local: productos_id
+      foreign: id
+      type: one
+    PlanificacionMaestros:
+      local: planificacion_maestros_id
       foreign: id
       type: one
 PlanificacionMaestros:
@@ -504,12 +531,12 @@ PlanificacionMaestros:
       notnull: false
       primary: false
   relations:
-    Empresas:
-      local: empresas_id
-      foreign: id
-      type: one
     Productos:
       local: productos_id
+      foreign: id
+      type: one
+    Empresas:
+      local: empresas_id
       foreign: id
       type: one
     PlanificacionDetalles:
@@ -581,6 +608,10 @@ Productos:
       foreign: id
       type: one
     Almacenes:
+      local: id
+      foreign: productos_id
+      type: many
+    Foto:
       local: id
       foreign: productos_id
       type: many
@@ -679,12 +710,9 @@ TiendaDetallePedido:
   tableName: tienda_detalle_pedido
   columns:
     id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: true
-      primary: false
-      sequence: tienda_detalle_pedido_id
+      type: integer(8)
+      autoincrement: true
+      primary: true
     productos_id:
       type: integer(4)
       fixed: false
@@ -710,12 +738,12 @@ TiendaDetallePedido:
       notnull: true
       primary: false
   relations:
-    TiendaMaestroPedido:
-      local: tienda_maestro_pedido_id
-      foreign: id
-      type: one
     Productos:
       local: productos_id
+      foreign: id
+      type: one
+    TiendaMaestroPedido:
+      local: tienda_maestro_pedido_id
       foreign: id
       type: one
 TiendaMaestroPedido:
@@ -938,16 +966,16 @@ VentasMaestro:
       notnull: true
       primary: false
   relations:
-    Productos:
-      local: productos_id
+    Empresas:
+      local: empresas_id
       foreign: id
       type: one
     Clientes:
       local: clientes_id
       foreign: id
       type: one
-    Empresas:
-      local: empresas_id
+    Productos:
+      local: productos_id
       foreign: id
       type: one
     Devoluciones:

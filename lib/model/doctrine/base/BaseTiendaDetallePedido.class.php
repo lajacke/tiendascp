@@ -12,23 +12,23 @@ Doctrine_Manager::getInstance()->bindComponent('TiendaDetallePedido', 'doctrine'
  * @property float $cantidad
  * @property date $fecha_entrega
  * @property integer $tienda_maestro_pedido_id
- * @property TiendaMaestroPedido $TiendaMaestroPedido
  * @property Productos $Productos
+ * @property TiendaMaestroPedido $TiendaMaestroPedido
  * 
  * @method integer             getId()                       Returns the current record's "id" value
  * @method integer             getProductosId()              Returns the current record's "productos_id" value
  * @method float               getCantidad()                 Returns the current record's "cantidad" value
  * @method date                getFechaEntrega()             Returns the current record's "fecha_entrega" value
  * @method integer             getTiendaMaestroPedidoId()    Returns the current record's "tienda_maestro_pedido_id" value
- * @method TiendaMaestroPedido getTiendaMaestroPedido()      Returns the current record's "TiendaMaestroPedido" value
  * @method Productos           getProductos()                Returns the current record's "Productos" value
+ * @method TiendaMaestroPedido getTiendaMaestroPedido()      Returns the current record's "TiendaMaestroPedido" value
  * @method TiendaDetallePedido setId()                       Sets the current record's "id" value
  * @method TiendaDetallePedido setProductosId()              Sets the current record's "productos_id" value
  * @method TiendaDetallePedido setCantidad()                 Sets the current record's "cantidad" value
  * @method TiendaDetallePedido setFechaEntrega()             Sets the current record's "fecha_entrega" value
  * @method TiendaDetallePedido setTiendaMaestroPedidoId()    Sets the current record's "tienda_maestro_pedido_id" value
- * @method TiendaDetallePedido setTiendaMaestroPedido()      Sets the current record's "TiendaMaestroPedido" value
  * @method TiendaDetallePedido setProductos()                Sets the current record's "Productos" value
+ * @method TiendaDetallePedido setTiendaMaestroPedido()      Sets the current record's "TiendaMaestroPedido" value
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -40,14 +40,11 @@ abstract class BaseTiendaDetallePedido extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('tienda_detalle_pedido');
-        $this->hasColumn('id', 'integer', 4, array(
+        $this->hasColumn('id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => true,
-             'primary' => false,
-             'sequence' => 'tienda_detalle_pedido_id',
-             'length' => 4,
+             'autoincrement' => true,
+             'primary' => true,
+             'length' => 8,
              ));
         $this->hasColumn('productos_id', 'integer', 4, array(
              'type' => 'integer',
@@ -86,12 +83,12 @@ abstract class BaseTiendaDetallePedido extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('TiendaMaestroPedido', array(
-             'local' => 'tienda_maestro_pedido_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Productos', array(
              'local' => 'productos_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('TiendaMaestroPedido', array(
+             'local' => 'tienda_maestro_pedido_id',
              'foreign' => 'id'));
     }
 }

@@ -21,11 +21,11 @@ Doctrine_Manager::getInstance()->bindComponent('Empresas', 'doctrine');
  * @property integer $tipo_empresas_id
  * @property integer $status_empresas_id
  * @property boolean $bicentenario
- * @property Ambitos $Ambitos
- * @property Ejes $Ejes
- * @property Parroquias $Parroquias
- * @property StatusEmpresas $StatusEmpresas
  * @property TipoEmpresas $TipoEmpresas
+ * @property StatusEmpresas $StatusEmpresas
+ * @property Parroquias $Parroquias
+ * @property Ejes $Ejes
+ * @property Ambitos $Ambitos
  * @property Doctrine_Collection $Categorias
  * @property Doctrine_Collection $Clientes
  * @property Doctrine_Collection $Devoluciones
@@ -48,11 +48,11 @@ Doctrine_Manager::getInstance()->bindComponent('Empresas', 'doctrine');
  * @method integer             getTipoEmpresasId()        Returns the current record's "tipo_empresas_id" value
  * @method integer             getStatusEmpresasId()      Returns the current record's "status_empresas_id" value
  * @method boolean             getBicentenario()          Returns the current record's "bicentenario" value
- * @method Ambitos             getAmbitos()               Returns the current record's "Ambitos" value
- * @method Ejes                getEjes()                  Returns the current record's "Ejes" value
- * @method Parroquias          getParroquias()            Returns the current record's "Parroquias" value
- * @method StatusEmpresas      getStatusEmpresas()        Returns the current record's "StatusEmpresas" value
  * @method TipoEmpresas        getTipoEmpresas()          Returns the current record's "TipoEmpresas" value
+ * @method StatusEmpresas      getStatusEmpresas()        Returns the current record's "StatusEmpresas" value
+ * @method Parroquias          getParroquias()            Returns the current record's "Parroquias" value
+ * @method Ejes                getEjes()                  Returns the current record's "Ejes" value
+ * @method Ambitos             getAmbitos()               Returns the current record's "Ambitos" value
  * @method Doctrine_Collection getCategorias()            Returns the current record's "Categorias" collection
  * @method Doctrine_Collection getClientes()              Returns the current record's "Clientes" collection
  * @method Doctrine_Collection getDevoluciones()          Returns the current record's "Devoluciones" collection
@@ -74,11 +74,11 @@ Doctrine_Manager::getInstance()->bindComponent('Empresas', 'doctrine');
  * @method Empresas            setTipoEmpresasId()        Sets the current record's "tipo_empresas_id" value
  * @method Empresas            setStatusEmpresasId()      Sets the current record's "status_empresas_id" value
  * @method Empresas            setBicentenario()          Sets the current record's "bicentenario" value
- * @method Empresas            setAmbitos()               Sets the current record's "Ambitos" value
- * @method Empresas            setEjes()                  Sets the current record's "Ejes" value
- * @method Empresas            setParroquias()            Sets the current record's "Parroquias" value
- * @method Empresas            setStatusEmpresas()        Sets the current record's "StatusEmpresas" value
  * @method Empresas            setTipoEmpresas()          Sets the current record's "TipoEmpresas" value
+ * @method Empresas            setStatusEmpresas()        Sets the current record's "StatusEmpresas" value
+ * @method Empresas            setParroquias()            Sets the current record's "Parroquias" value
+ * @method Empresas            setEjes()                  Sets the current record's "Ejes" value
+ * @method Empresas            setAmbitos()               Sets the current record's "Ambitos" value
  * @method Empresas            setCategorias()            Sets the current record's "Categorias" collection
  * @method Empresas            setClientes()              Sets the current record's "Clientes" collection
  * @method Empresas            setDevoluciones()          Sets the current record's "Devoluciones" collection
@@ -215,24 +215,24 @@ abstract class BaseEmpresas extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Ambitos', array(
-             'local' => 'ambitos_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Ejes', array(
-             'local' => 'ejes_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Parroquias', array(
-             'local' => 'parroquias_id',
+        $this->hasOne('TipoEmpresas', array(
+             'local' => 'tipo_empresas_id',
              'foreign' => 'id'));
 
         $this->hasOne('StatusEmpresas', array(
              'local' => 'status_empresas_id',
              'foreign' => 'id'));
 
-        $this->hasOne('TipoEmpresas', array(
-             'local' => 'tipo_empresas_id',
+        $this->hasOne('Parroquias', array(
+             'local' => 'parroquias_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ejes', array(
+             'local' => 'ejes_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ambitos', array(
+             'local' => 'ambitos_id',
              'foreign' => 'id'));
 
         $this->hasMany('Categorias', array(

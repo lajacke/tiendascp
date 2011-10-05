@@ -13,8 +13,8 @@ Doctrine_Manager::getInstance()->bindComponent('PlanificacionDetalles', 'doctrin
  * @property integer $cantidad
  * @property integer $cantidad_produccion
  * @property integer $dia
- * @property PlanificacionMaestros $PlanificacionMaestros
  * @property Productos $Productos
+ * @property PlanificacionMaestros $PlanificacionMaestros
  * 
  * @method integer               getId()                        Returns the current record's "id" value
  * @method integer               getPlanificacionMaestrosId()   Returns the current record's "planificacion_maestros_id" value
@@ -22,16 +22,16 @@ Doctrine_Manager::getInstance()->bindComponent('PlanificacionDetalles', 'doctrin
  * @method integer               getCantidad()                  Returns the current record's "cantidad" value
  * @method integer               getCantidadProduccion()        Returns the current record's "cantidad_produccion" value
  * @method integer               getDia()                       Returns the current record's "dia" value
- * @method PlanificacionMaestros getPlanificacionMaestros()     Returns the current record's "PlanificacionMaestros" value
  * @method Productos             getProductos()                 Returns the current record's "Productos" value
+ * @method PlanificacionMaestros getPlanificacionMaestros()     Returns the current record's "PlanificacionMaestros" value
  * @method PlanificacionDetalles setId()                        Sets the current record's "id" value
  * @method PlanificacionDetalles setPlanificacionMaestrosId()   Sets the current record's "planificacion_maestros_id" value
  * @method PlanificacionDetalles setProductosId()               Sets the current record's "productos_id" value
  * @method PlanificacionDetalles setCantidad()                  Sets the current record's "cantidad" value
  * @method PlanificacionDetalles setCantidadProduccion()        Sets the current record's "cantidad_produccion" value
  * @method PlanificacionDetalles setDia()                       Sets the current record's "dia" value
- * @method PlanificacionDetalles setPlanificacionMaestros()     Sets the current record's "PlanificacionMaestros" value
  * @method PlanificacionDetalles setProductos()                 Sets the current record's "Productos" value
+ * @method PlanificacionDetalles setPlanificacionMaestros()     Sets the current record's "PlanificacionMaestros" value
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -96,12 +96,12 @@ abstract class BasePlanificacionDetalles extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('PlanificacionMaestros', array(
-             'local' => 'planificacion_maestros_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Productos', array(
              'local' => 'productos_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('PlanificacionMaestros', array(
+             'local' => 'planificacion_maestros_id',
              'foreign' => 'id'));
     }
 }

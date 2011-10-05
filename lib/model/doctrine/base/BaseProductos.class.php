@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @property integer $categorias_id
  * @property Empresas $Empresas
  * @property Doctrine_Collection $Almacenes
+ * @property Doctrine_Collection $Foto
  * @property Doctrine_Collection $PlanificacionDetalles
  * @property Doctrine_Collection $PlanificacionMaestros
  * @property Doctrine_Collection $TiendaCarrito
@@ -35,6 +36,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @method integer             getCategoriasId()          Returns the current record's "categorias_id" value
  * @method Empresas            getEmpresas()              Returns the current record's "Empresas" value
  * @method Doctrine_Collection getAlmacenes()             Returns the current record's "Almacenes" collection
+ * @method Doctrine_Collection getFoto()                  Returns the current record's "Foto" collection
  * @method Doctrine_Collection getPlanificacionDetalles() Returns the current record's "PlanificacionDetalles" collection
  * @method Doctrine_Collection getPlanificacionMaestros() Returns the current record's "PlanificacionMaestros" collection
  * @method Doctrine_Collection getTiendaCarrito()         Returns the current record's "TiendaCarrito" collection
@@ -51,6 +53,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @method Productos           setCategoriasId()          Sets the current record's "categorias_id" value
  * @method Productos           setEmpresas()              Sets the current record's "Empresas" value
  * @method Productos           setAlmacenes()             Sets the current record's "Almacenes" collection
+ * @method Productos           setFoto()                  Sets the current record's "Foto" collection
  * @method Productos           setPlanificacionDetalles() Sets the current record's "PlanificacionDetalles" collection
  * @method Productos           setPlanificacionMaestros() Sets the current record's "PlanificacionMaestros" collection
  * @method Productos           setTiendaCarrito()         Sets the current record's "TiendaCarrito" collection
@@ -150,6 +153,10 @@ abstract class BaseProductos extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasMany('Almacenes', array(
+             'local' => 'id',
+             'foreign' => 'productos_id'));
+
+        $this->hasMany('Foto', array(
              'local' => 'id',
              'foreign' => 'productos_id'));
 

@@ -13,7 +13,6 @@ abstract class BaseTiendaDetallePedidoFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'productos_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Productos'), 'add_empty' => true)),
       'cantidad'                 => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'fecha_entrega'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -21,7 +20,6 @@ abstract class BaseTiendaDetallePedidoFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'productos_id'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Productos'), 'column' => 'id')),
       'cantidad'                 => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'fecha_entrega'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
