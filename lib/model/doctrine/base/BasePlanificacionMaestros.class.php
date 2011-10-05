@@ -11,23 +11,23 @@ Doctrine_Manager::getInstance()->bindComponent('PlanificacionMaestros', 'doctrin
  * @property integer $empresas_id
  * @property string $mes
  * @property integer $productos_id
- * @property Empresas $Empresas
  * @property Productos $Productos
+ * @property Empresas $Empresas
  * @property Doctrine_Collection $PlanificacionDetalles
  * 
  * @method integer               getId()                    Returns the current record's "id" value
  * @method integer               getEmpresasId()            Returns the current record's "empresas_id" value
  * @method string                getMes()                   Returns the current record's "mes" value
  * @method integer               getProductosId()           Returns the current record's "productos_id" value
- * @method Empresas              getEmpresas()              Returns the current record's "Empresas" value
  * @method Productos             getProductos()             Returns the current record's "Productos" value
+ * @method Empresas              getEmpresas()              Returns the current record's "Empresas" value
  * @method Doctrine_Collection   getPlanificacionDetalles() Returns the current record's "PlanificacionDetalles" collection
  * @method PlanificacionMaestros setId()                    Sets the current record's "id" value
  * @method PlanificacionMaestros setEmpresasId()            Sets the current record's "empresas_id" value
  * @method PlanificacionMaestros setMes()                   Sets the current record's "mes" value
  * @method PlanificacionMaestros setProductosId()           Sets the current record's "productos_id" value
- * @method PlanificacionMaestros setEmpresas()              Sets the current record's "Empresas" value
  * @method PlanificacionMaestros setProductos()             Sets the current record's "Productos" value
+ * @method PlanificacionMaestros setEmpresas()              Sets the current record's "Empresas" value
  * @method PlanificacionMaestros setPlanificacionDetalles() Sets the current record's "PlanificacionDetalles" collection
  * 
  * @package    tienda_scp
@@ -77,12 +77,12 @@ abstract class BasePlanificacionMaestros extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Empresas', array(
-             'local' => 'empresas_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Productos', array(
              'local' => 'productos_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Empresas', array(
+             'local' => 'empresas_id',
              'foreign' => 'id'));
 
         $this->hasMany('PlanificacionDetalles', array(

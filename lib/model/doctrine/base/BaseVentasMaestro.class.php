@@ -14,9 +14,9 @@ Doctrine_Manager::getInstance()->bindComponent('VentasMaestro', 'doctrine');
  * @property integer $empresas_id
  * @property integer $productos_cantidad
  * @property float $total_venta
- * @property Productos $Productos
- * @property Clientes $Clientes
  * @property Empresas $Empresas
+ * @property Clientes $Clientes
+ * @property Productos $Productos
  * @property Doctrine_Collection $Devoluciones
  * 
  * @method integer             getId()                 Returns the current record's "id" value
@@ -26,9 +26,9 @@ Doctrine_Manager::getInstance()->bindComponent('VentasMaestro', 'doctrine');
  * @method integer             getEmpresasId()         Returns the current record's "empresas_id" value
  * @method integer             getProductosCantidad()  Returns the current record's "productos_cantidad" value
  * @method float               getTotalVenta()         Returns the current record's "total_venta" value
- * @method Productos           getProductos()          Returns the current record's "Productos" value
- * @method Clientes            getClientes()           Returns the current record's "Clientes" value
  * @method Empresas            getEmpresas()           Returns the current record's "Empresas" value
+ * @method Clientes            getClientes()           Returns the current record's "Clientes" value
+ * @method Productos           getProductos()          Returns the current record's "Productos" value
  * @method Doctrine_Collection getDevoluciones()       Returns the current record's "Devoluciones" collection
  * @method VentasMaestro       setId()                 Sets the current record's "id" value
  * @method VentasMaestro       setClientesId()         Sets the current record's "clientes_id" value
@@ -37,9 +37,9 @@ Doctrine_Manager::getInstance()->bindComponent('VentasMaestro', 'doctrine');
  * @method VentasMaestro       setEmpresasId()         Sets the current record's "empresas_id" value
  * @method VentasMaestro       setProductosCantidad()  Sets the current record's "productos_cantidad" value
  * @method VentasMaestro       setTotalVenta()         Sets the current record's "total_venta" value
- * @method VentasMaestro       setProductos()          Sets the current record's "Productos" value
- * @method VentasMaestro       setClientes()           Sets the current record's "Clientes" value
  * @method VentasMaestro       setEmpresas()           Sets the current record's "Empresas" value
+ * @method VentasMaestro       setClientes()           Sets the current record's "Clientes" value
+ * @method VentasMaestro       setProductos()          Sets the current record's "Productos" value
  * @method VentasMaestro       setDevoluciones()       Sets the current record's "Devoluciones" collection
  * 
  * @package    tienda_scp
@@ -113,16 +113,16 @@ abstract class BaseVentasMaestro extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Productos', array(
-             'local' => 'productos_id',
+        $this->hasOne('Empresas', array(
+             'local' => 'empresas_id',
              'foreign' => 'id'));
 
         $this->hasOne('Clientes', array(
              'local' => 'clientes_id',
              'foreign' => 'id'));
 
-        $this->hasOne('Empresas', array(
-             'local' => 'empresas_id',
+        $this->hasOne('Productos', array(
+             'local' => 'productos_id',
              'foreign' => 'id'));
 
         $this->hasMany('Devoluciones', array(

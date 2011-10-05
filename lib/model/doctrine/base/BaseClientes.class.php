@@ -12,8 +12,8 @@ Doctrine_Manager::getInstance()->bindComponent('Clientes', 'doctrine');
  * @property integer $tipo_clientes_id
  * @property string $cliente_rif
  * @property integer $empresas_id
- * @property Empresas $Empresas
  * @property TipoClientes $TipoClientes
+ * @property Empresas $Empresas
  * @property Doctrine_Collection $VentasMaestro
  * 
  * @method integer             getId()               Returns the current record's "id" value
@@ -21,16 +21,16 @@ Doctrine_Manager::getInstance()->bindComponent('Clientes', 'doctrine');
  * @method integer             getTipoClientesId()   Returns the current record's "tipo_clientes_id" value
  * @method string              getClienteRif()       Returns the current record's "cliente_rif" value
  * @method integer             getEmpresasId()       Returns the current record's "empresas_id" value
- * @method Empresas            getEmpresas()         Returns the current record's "Empresas" value
  * @method TipoClientes        getTipoClientes()     Returns the current record's "TipoClientes" value
+ * @method Empresas            getEmpresas()         Returns the current record's "Empresas" value
  * @method Doctrine_Collection getVentasMaestro()    Returns the current record's "VentasMaestro" collection
  * @method Clientes            setId()               Sets the current record's "id" value
  * @method Clientes            setNombre()           Sets the current record's "nombre" value
  * @method Clientes            setTipoClientesId()   Sets the current record's "tipo_clientes_id" value
  * @method Clientes            setClienteRif()       Sets the current record's "cliente_rif" value
  * @method Clientes            setEmpresasId()       Sets the current record's "empresas_id" value
- * @method Clientes            setEmpresas()         Sets the current record's "Empresas" value
  * @method Clientes            setTipoClientes()     Sets the current record's "TipoClientes" value
+ * @method Clientes            setEmpresas()         Sets the current record's "Empresas" value
  * @method Clientes            setVentasMaestro()    Sets the current record's "VentasMaestro" collection
  * 
  * @package    tienda_scp
@@ -88,12 +88,12 @@ abstract class BaseClientes extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Empresas', array(
-             'local' => 'empresas_id',
-             'foreign' => 'id'));
-
         $this->hasOne('TipoClientes', array(
              'local' => 'tipo_clientes_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Empresas', array(
+             'local' => 'empresas_id',
              'foreign' => 'id'));
 
         $this->hasMany('VentasMaestro', array(

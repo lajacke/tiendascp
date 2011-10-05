@@ -1,6 +1,8 @@
-.precio{font-size: 14px;color: #990000;font-weight: 600;}
+.precio{font-size: 18px;color: #990000;font-weight: 600;}
 #carrito{text-align: center}
 #comprar,#comprado{width: 120px; height: 35px; cursor: pointer}
 #buscador{text-align: right}
 .prod_cantidad{width: 50px;}
 .subtotal{font-size: 16px;color: #990000;font-weight: 600;}
+.thumb{width: 75px; height: 75px;}
+.titulo {color: #555555; font-size: 28px; font-weight: bold; letter-spacing: -0.5px; line-height: 33px; margin-top: 0;}

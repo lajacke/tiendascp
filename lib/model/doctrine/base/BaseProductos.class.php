@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @property integer $categorias_id
  * @property Empresas $Empresas
  * @property Doctrine_Collection $Almacenes
+ * @property Doctrine_Collection $Foto
  * @property Doctrine_Collection $PlanificacionDetalles
  * @property Doctrine_Collection $PlanificacionMaestros
  * @property Doctrine_Collection $TiendaCarrito
@@ -25,40 +26,40 @@ Doctrine_Manager::getInstance()->bindComponent('Productos', 'doctrine');
  * @property Doctrine_Collection $TiendaDetallePlanificacion
  * @property Doctrine_Collection $VentasMaestro
  * 
- * @method integer             getId()                         Returns the current record's "id" value
- * @method string              getNombre()                     Returns the current record's "nombre" value
- * @method string              getDenominacion()               Returns the current record's "denominacion" value
- * @method string              getEspecificaciones()           Returns the current record's "especificaciones" value
- * @method string              getPresentacion()               Returns the current record's "presentacion" value
- * @method float               getPrecioReal()                 Returns the current record's "precio_real" value
- * @method integer             getEmpresasId()                 Returns the current record's "empresas_id" value
- * @method integer             getCantidadInicial()            Returns the current record's "cantidad_inicial" value
- * @method integer             getCategoriasId()               Returns the current record's "categorias_id" value
- * @method Empresas            getEmpresas()                   Returns the current record's "Empresas" value
- * @method Doctrine_Collection getAlmacenes()                  Returns the current record's "Almacenes" collection
- * @method Doctrine_Collection getPlanificacionDetalles()      Returns the current record's "PlanificacionDetalles" collection
- * @method Doctrine_Collection getPlanificacionMaestros()      Returns the current record's "PlanificacionMaestros" collection
- * @method Doctrine_Collection getTiendaCarrito()              Returns the current record's "TiendaCarrito" collection
- * @method Doctrine_Collection getTiendaDetallePedido()        Returns the current record's "TiendaDetallePedido" collection
- * @method Doctrine_Collection getTiendaDetallePlanificacion() Returns the current record's "TiendaDetallePlanificacion" collection
- * @method Doctrine_Collection getVentasMaestro()              Returns the current record's "VentasMaestro" collection
- * @method Productos           setId()                         Sets the current record's "id" value
- * @method Productos           setNombre()                     Sets the current record's "nombre" value
- * @method Productos           setDenominacion()               Sets the current record's "denominacion" value
- * @method Productos           setEspecificaciones()           Sets the current record's "especificaciones" value
- * @method Productos           setPresentacion()               Sets the current record's "presentacion" value
- * @method Productos           setPrecioReal()                 Sets the current record's "precio_real" value
- * @method Productos           setEmpresasId()                 Sets the current record's "empresas_id" value
- * @method Productos           setCantidadInicial()            Sets the current record's "cantidad_inicial" value
- * @method Productos           setCategoriasId()               Sets the current record's "categorias_id" value
- * @method Productos           setEmpresas()                   Sets the current record's "Empresas" value
- * @method Productos           setAlmacenes()                  Sets the current record's "Almacenes" collection
- * @method Productos           setPlanificacionDetalles()      Sets the current record's "PlanificacionDetalles" collection
- * @method Productos           setPlanificacionMaestros()      Sets the current record's "PlanificacionMaestros" collection
- * @method Productos           setTiendaCarrito()              Sets the current record's "TiendaCarrito" collection
- * @method Productos           setTiendaDetallePedido()        Sets the current record's "TiendaDetallePedido" collection
- * @method Productos           setTiendaDetallePlanificacion() Sets the current record's "TiendaDetallePlanificacion" collection
- * @method Productos           setVentasMaestro()              Sets the current record's "VentasMaestro" collection
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method string              getNombre()                Returns the current record's "nombre" value
+ * @method string              getDenominacion()          Returns the current record's "denominacion" value
+ * @method string              getEspecificaciones()      Returns the current record's "especificaciones" value
+ * @method string              getPresentacion()          Returns the current record's "presentacion" value
+ * @method float               getPrecioReal()            Returns the current record's "precio_real" value
+ * @method integer             getEmpresasId()            Returns the current record's "empresas_id" value
+ * @method integer             getCantidadInicial()       Returns the current record's "cantidad_inicial" value
+ * @method integer             getCategoriasId()          Returns the current record's "categorias_id" value
+ * @method Empresas            getEmpresas()              Returns the current record's "Empresas" value
+ * @method Doctrine_Collection getAlmacenes()             Returns the current record's "Almacenes" collection
+ * @method Doctrine_Collection getFoto()                  Returns the current record's "Foto" collection
+ * @method Doctrine_Collection getPlanificacionDetalles() Returns the current record's "PlanificacionDetalles" collection
+ * @method Doctrine_Collection getPlanificacionMaestros() Returns the current record's "PlanificacionMaestros" collection
+ * @method Doctrine_Collection getTiendaCarrito()         Returns the current record's "TiendaCarrito" collection
+ * @method Doctrine_Collection getTiendaDetallePedido()   Returns the current record's "TiendaDetallePedido" collection
+ * @method Doctrine_Collection getVentasMaestro()         Returns the current record's "VentasMaestro" collection
+ * @method Productos           setId()                    Sets the current record's "id" value
+ * @method Productos           setNombre()                Sets the current record's "nombre" value
+ * @method Productos           setDenominacion()          Sets the current record's "denominacion" value
+ * @method Productos           setEspecificaciones()      Sets the current record's "especificaciones" value
+ * @method Productos           setPresentacion()          Sets the current record's "presentacion" value
+ * @method Productos           setPrecioReal()            Sets the current record's "precio_real" value
+ * @method Productos           setEmpresasId()            Sets the current record's "empresas_id" value
+ * @method Productos           setCantidadInicial()       Sets the current record's "cantidad_inicial" value
+ * @method Productos           setCategoriasId()          Sets the current record's "categorias_id" value
+ * @method Productos           setEmpresas()              Sets the current record's "Empresas" value
+ * @method Productos           setAlmacenes()             Sets the current record's "Almacenes" collection
+ * @method Productos           setFoto()                  Sets the current record's "Foto" collection
+ * @method Productos           setPlanificacionDetalles() Sets the current record's "PlanificacionDetalles" collection
+ * @method Productos           setPlanificacionMaestros() Sets the current record's "PlanificacionMaestros" collection
+ * @method Productos           setTiendaCarrito()         Sets the current record's "TiendaCarrito" collection
+ * @method Productos           setTiendaDetallePedido()   Sets the current record's "TiendaDetallePedido" collection
+ * @method Productos           setVentasMaestro()         Sets the current record's "VentasMaestro" collection
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -153,6 +154,10 @@ abstract class BaseProductos extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasMany('Almacenes', array(
+             'local' => 'id',
+             'foreign' => 'productos_id'));
+
+        $this->hasMany('Foto', array(
              'local' => 'id',
              'foreign' => 'productos_id'));
 

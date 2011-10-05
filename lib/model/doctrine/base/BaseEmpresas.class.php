@@ -21,11 +21,11 @@ Doctrine_Manager::getInstance()->bindComponent('Empresas', 'doctrine');
  * @property integer $tipo_empresas_id
  * @property integer $status_empresas_id
  * @property boolean $bicentenario
- * @property Ambitos $Ambitos
- * @property Ejes $Ejes
- * @property Parroquias $Parroquias
- * @property StatusEmpresas $StatusEmpresas
  * @property TipoEmpresas $TipoEmpresas
+ * @property StatusEmpresas $StatusEmpresas
+ * @property Parroquias $Parroquias
+ * @property Ejes $Ejes
+ * @property Ambitos $Ambitos
  * @property Doctrine_Collection $Categorias
  * @property Doctrine_Collection $Clientes
  * @property Doctrine_Collection $Devoluciones
@@ -35,60 +35,58 @@ Doctrine_Manager::getInstance()->bindComponent('Empresas', 'doctrine');
  * @property Doctrine_Collection $TiendaMaestroPlanificacion
  * @property Doctrine_Collection $VentasMaestro
  * 
- * @method integer             getId()                         Returns the current record's "id" value
- * @method string              getNombreEmpresa()              Returns the current record's "nombre_empresa" value
- * @method string              getActividadEconomica()         Returns the current record's "actividad_economica" value
- * @method string              getRif()                        Returns the current record's "rif" value
- * @method string              getDireccion()                  Returns the current record's "direccion" value
- * @method string              getLocalidad()                  Returns the current record's "localidad" value
- * @method string              getCoordenadaX()                Returns the current record's "coordenada_x" value
- * @method string              getCoordenadaY()                Returns the current record's "coordenada_y" value
- * @method integer             getEjesId()                     Returns the current record's "ejes_id" value
- * @method integer             getAmbitosId()                  Returns the current record's "ambitos_id" value
- * @method string              getParroquiasId()               Returns the current record's "parroquias_id" value
- * @method integer             getTipoEmpresasId()             Returns the current record's "tipo_empresas_id" value
- * @method integer             getStatusEmpresasId()           Returns the current record's "status_empresas_id" value
- * @method boolean             getBicentenario()               Returns the current record's "bicentenario" value
- * @method Ambitos             getAmbitos()                    Returns the current record's "Ambitos" value
- * @method Ejes                getEjes()                       Returns the current record's "Ejes" value
- * @method Parroquias          getParroquias()                 Returns the current record's "Parroquias" value
- * @method StatusEmpresas      getStatusEmpresas()             Returns the current record's "StatusEmpresas" value
- * @method TipoEmpresas        getTipoEmpresas()               Returns the current record's "TipoEmpresas" value
- * @method Doctrine_Collection getCategorias()                 Returns the current record's "Categorias" collection
- * @method Doctrine_Collection getClientes()                   Returns the current record's "Clientes" collection
- * @method Doctrine_Collection getDevoluciones()               Returns the current record's "Devoluciones" collection
- * @method Doctrine_Collection getPlanificacionMaestros()      Returns the current record's "PlanificacionMaestros" collection
- * @method Doctrine_Collection getProductos()                  Returns the current record's "Productos" collection
- * @method Doctrine_Collection getTiendaMaestroPedido()        Returns the current record's "TiendaMaestroPedido" collection
- * @method Doctrine_Collection getTiendaMaestroPlanificacion() Returns the current record's "TiendaMaestroPlanificacion" collection
- * @method Doctrine_Collection getVentasMaestro()              Returns the current record's "VentasMaestro" collection
- * @method Empresas            setId()                         Sets the current record's "id" value
- * @method Empresas            setNombreEmpresa()              Sets the current record's "nombre_empresa" value
- * @method Empresas            setActividadEconomica()         Sets the current record's "actividad_economica" value
- * @method Empresas            setRif()                        Sets the current record's "rif" value
- * @method Empresas            setDireccion()                  Sets the current record's "direccion" value
- * @method Empresas            setLocalidad()                  Sets the current record's "localidad" value
- * @method Empresas            setCoordenadaX()                Sets the current record's "coordenada_x" value
- * @method Empresas            setCoordenadaY()                Sets the current record's "coordenada_y" value
- * @method Empresas            setEjesId()                     Sets the current record's "ejes_id" value
- * @method Empresas            setAmbitosId()                  Sets the current record's "ambitos_id" value
- * @method Empresas            setParroquiasId()               Sets the current record's "parroquias_id" value
- * @method Empresas            setTipoEmpresasId()             Sets the current record's "tipo_empresas_id" value
- * @method Empresas            setStatusEmpresasId()           Sets the current record's "status_empresas_id" value
- * @method Empresas            setBicentenario()               Sets the current record's "bicentenario" value
- * @method Empresas            setAmbitos()                    Sets the current record's "Ambitos" value
- * @method Empresas            setEjes()                       Sets the current record's "Ejes" value
- * @method Empresas            setParroquias()                 Sets the current record's "Parroquias" value
- * @method Empresas            setStatusEmpresas()             Sets the current record's "StatusEmpresas" value
- * @method Empresas            setTipoEmpresas()               Sets the current record's "TipoEmpresas" value
- * @method Empresas            setCategorias()                 Sets the current record's "Categorias" collection
- * @method Empresas            setClientes()                   Sets the current record's "Clientes" collection
- * @method Empresas            setDevoluciones()               Sets the current record's "Devoluciones" collection
- * @method Empresas            setPlanificacionMaestros()      Sets the current record's "PlanificacionMaestros" collection
- * @method Empresas            setProductos()                  Sets the current record's "Productos" collection
- * @method Empresas            setTiendaMaestroPedido()        Sets the current record's "TiendaMaestroPedido" collection
- * @method Empresas            setTiendaMaestroPlanificacion() Sets the current record's "TiendaMaestroPlanificacion" collection
- * @method Empresas            setVentasMaestro()              Sets the current record's "VentasMaestro" collection
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method string              getNombreEmpresa()         Returns the current record's "nombre_empresa" value
+ * @method string              getActividadEconomica()    Returns the current record's "actividad_economica" value
+ * @method string              getRif()                   Returns the current record's "rif" value
+ * @method string              getDireccion()             Returns the current record's "direccion" value
+ * @method string              getLocalidad()             Returns the current record's "localidad" value
+ * @method string              getCoordenadaX()           Returns the current record's "coordenada_x" value
+ * @method string              getCoordenadaY()           Returns the current record's "coordenada_y" value
+ * @method integer             getEjesId()                Returns the current record's "ejes_id" value
+ * @method integer             getAmbitosId()             Returns the current record's "ambitos_id" value
+ * @method string              getParroquiasId()          Returns the current record's "parroquias_id" value
+ * @method integer             getTipoEmpresasId()        Returns the current record's "tipo_empresas_id" value
+ * @method integer             getStatusEmpresasId()      Returns the current record's "status_empresas_id" value
+ * @method boolean             getBicentenario()          Returns the current record's "bicentenario" value
+ * @method TipoEmpresas        getTipoEmpresas()          Returns the current record's "TipoEmpresas" value
+ * @method StatusEmpresas      getStatusEmpresas()        Returns the current record's "StatusEmpresas" value
+ * @method Parroquias          getParroquias()            Returns the current record's "Parroquias" value
+ * @method Ejes                getEjes()                  Returns the current record's "Ejes" value
+ * @method Ambitos             getAmbitos()               Returns the current record's "Ambitos" value
+ * @method Doctrine_Collection getCategorias()            Returns the current record's "Categorias" collection
+ * @method Doctrine_Collection getClientes()              Returns the current record's "Clientes" collection
+ * @method Doctrine_Collection getDevoluciones()          Returns the current record's "Devoluciones" collection
+ * @method Doctrine_Collection getPlanificacionMaestros() Returns the current record's "PlanificacionMaestros" collection
+ * @method Doctrine_Collection getProductos()             Returns the current record's "Productos" collection
+ * @method Doctrine_Collection getTiendaMaestroPedido()   Returns the current record's "TiendaMaestroPedido" collection
+ * @method Doctrine_Collection getVentasMaestro()         Returns the current record's "VentasMaestro" collection
+ * @method Empresas            setId()                    Sets the current record's "id" value
+ * @method Empresas            setNombreEmpresa()         Sets the current record's "nombre_empresa" value
+ * @method Empresas            setActividadEconomica()    Sets the current record's "actividad_economica" value
+ * @method Empresas            setRif()                   Sets the current record's "rif" value
+ * @method Empresas            setDireccion()             Sets the current record's "direccion" value
+ * @method Empresas            setLocalidad()             Sets the current record's "localidad" value
+ * @method Empresas            setCoordenadaX()           Sets the current record's "coordenada_x" value
+ * @method Empresas            setCoordenadaY()           Sets the current record's "coordenada_y" value
+ * @method Empresas            setEjesId()                Sets the current record's "ejes_id" value
+ * @method Empresas            setAmbitosId()             Sets the current record's "ambitos_id" value
+ * @method Empresas            setParroquiasId()          Sets the current record's "parroquias_id" value
+ * @method Empresas            setTipoEmpresasId()        Sets the current record's "tipo_empresas_id" value
+ * @method Empresas            setStatusEmpresasId()      Sets the current record's "status_empresas_id" value
+ * @method Empresas            setBicentenario()          Sets the current record's "bicentenario" value
+ * @method Empresas            setTipoEmpresas()          Sets the current record's "TipoEmpresas" value
+ * @method Empresas            setStatusEmpresas()        Sets the current record's "StatusEmpresas" value
+ * @method Empresas            setParroquias()            Sets the current record's "Parroquias" value
+ * @method Empresas            setEjes()                  Sets the current record's "Ejes" value
+ * @method Empresas            setAmbitos()               Sets the current record's "Ambitos" value
+ * @method Empresas            setCategorias()            Sets the current record's "Categorias" collection
+ * @method Empresas            setClientes()              Sets the current record's "Clientes" collection
+ * @method Empresas            setDevoluciones()          Sets the current record's "Devoluciones" collection
+ * @method Empresas            setPlanificacionMaestros() Sets the current record's "PlanificacionMaestros" collection
+ * @method Empresas            setProductos()             Sets the current record's "Productos" collection
+ * @method Empresas            setTiendaMaestroPedido()   Sets the current record's "TiendaMaestroPedido" collection
+ * @method Empresas            setVentasMaestro()         Sets the current record's "VentasMaestro" collection
  * 
  * @package    tienda_scp
  * @subpackage model
@@ -218,24 +216,24 @@ abstract class BaseEmpresas extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Ambitos', array(
-             'local' => 'ambitos_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Ejes', array(
-             'local' => 'ejes_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Parroquias', array(
-             'local' => 'parroquias_id',
+        $this->hasOne('TipoEmpresas', array(
+             'local' => 'tipo_empresas_id',
              'foreign' => 'id'));
 
         $this->hasOne('StatusEmpresas', array(
              'local' => 'status_empresas_id',
              'foreign' => 'id'));
 
-        $this->hasOne('TipoEmpresas', array(
-             'local' => 'tipo_empresas_id',
+        $this->hasOne('Parroquias', array(
+             'local' => 'parroquias_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ejes', array(
+             'local' => 'ejes_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ambitos', array(
+             'local' => 'ambitos_id',
              'foreign' => 'id'));
 
         $this->hasMany('Categorias', array(

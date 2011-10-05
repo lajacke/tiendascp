@@ -29,7 +29,8 @@ class tiendaActions extends sfActions {
     }
 
     public function executeShow(sfWebRequest $request) {
-        $this->producto = Doctrine_Core::getTable("Productos")->findBy("id", $request->getParameter("id"));
+        $id = $request->getParameter('id');
+        $this->producto = Doctrine::getTable('Productos')->getShow($id);
     }
 
     public function executeComprar(sfWebRequest $request) {

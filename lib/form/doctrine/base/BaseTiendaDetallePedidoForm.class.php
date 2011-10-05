@@ -15,7 +15,7 @@ abstract class BaseTiendaDetallePedidoForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                       => new sfWidgetFormInputText(),
+      'id'                       => new sfWidgetFormInputHidden(),
       'productos_id'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Productos'), 'add_empty' => false)),
       'cantidad'                 => new sfWidgetFormInputText(),
       'fecha_entrega'            => new sfWidgetFormDate(),
@@ -23,7 +23,7 @@ abstract class BaseTiendaDetallePedidoForm extends BaseFormDoctrine
     ));
 
     $this->setValidators(array(
-      'id'                       => new sfValidatorInteger(),
+      'id'                       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'productos_id'             => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Productos'))),
       'cantidad'                 => new sfValidatorNumber(),
       'fecha_entrega'            => new sfValidatorDate(),
